@@ -1,0 +1,19 @@
+# מתעלם מהתיקיות node_modules וה-build של React
+
+ToDoListReact/node_modules/
+ToDoListReact/build/
+
+# מתעלם מקבצים שנוצרים על ידי VS Code
+
+.vscode/
+
+ #מתעלם מקבצים של .NET
+
+ToDoApi/bin/
+ToDoApi/obj/
+ToDoApi/.vs/
+ToDoApi/appsettings.json
+ToDoApi/appsettings.Development.json
+
+# מתעלם מהקובץ של משתני סביבה
+*.env
