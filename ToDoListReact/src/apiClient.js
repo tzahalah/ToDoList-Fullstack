@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // יצירת אינסטנס מותאם אישית
 const apiClient = axios.create({
-  baseURL: 'http://localhost:5136',
-});
+  baseURL: process.env.REACT_APP_API_URL,
+ });
 
 // הוספת Interceptor לתפיסת שגיאות
 apiClient.interceptors.response.use(
