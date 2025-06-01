@@ -13,6 +13,7 @@ import { red } from '@mui/material/colors';
 
 
 const Login = () => {
+   console.log('API URL:', process.env.REACT_APP_API_URL);
    let nav= useNavigate()
 const [message,setMessage]= useState("")
 const [show,setShow]=useState("false")
