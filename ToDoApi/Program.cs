@@ -59,7 +59,7 @@ builder.Services.AddSingleton<JwtService>();
 
 builder.Services.AddDbContext<ToDoDbContext>(options =>
 {
-    var x = builder.Configuration["ConnectionStrings__ToDoDB"];
+    var x = builder.Configuration.GetSection("ConnectionStrings")["ToDoDB"];
 Console.WriteLine("Connection string: " + x);
     options.UseMySql(x, ServerVersion.AutoDetect(x));
 });
