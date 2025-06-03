@@ -52,7 +52,7 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddSingleton<JwtService>();
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("ToDoDB"),
+        builder.Configuration.GetConnectionString("Connection-String"),
         new MySqlServerVersion(new Version(8, 0, 2))
     ));
 
