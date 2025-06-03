@@ -56,12 +56,10 @@ builder.Services.AddSingleton<JwtService>();
 //         new MySqlServerVersion(new Version(8, 0, 2))
 //     ));
 
-builder.Services.AddDbContext<DataContext>(options =>
+builder.Services.AddDbContext<ToDoDbContext>(options =>
 {
     var x = builder.Configuration["ConnectionStrings__ToDoDB"];
-    options.UseMySql(x,
-                   ServerVersion.AutoDetect(x)
-        );
+    options.UseMySql(x, ServerVersion.AutoDetect(x));
 });
 
 
