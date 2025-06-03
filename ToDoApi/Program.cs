@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ToDoApi;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
@@ -59,9 +60,9 @@ builder.Services.AddSingleton<JwtService>();
 builder.Services.AddDbContext<ToDoDbContext>(options =>
 {
     var x = builder.Configuration["ConnectionStrings__ToDoDB"];
+Console.WriteLine("Connection string: " + x);
     options.UseMySql(x, ServerVersion.AutoDetect(x));
 });
-
 
 
 var app = builder.Build();
