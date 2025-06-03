@@ -50,11 +50,21 @@ builder.Services.AddSwaggerGen(options =>
 
 
 builder.Services.AddSingleton<JwtService>();
-builder.Services.AddDbContext<ToDoDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("ToDoDB"),
-        new MySqlServerVersion(new Version(8, 0, 2))
-    ));
+// builder.Services.AddDbContext<ToDoDbContext>(options =>
+//     options.UseMySql(
+//         builder.Configuration.GetConnectionString("ToDoDB"),
+//         new MySqlServerVersion(new Version(8, 0, 2))
+//     ));
+
+builder.Services.AddDbContext<DataContext>(options =>
+{
+    var x = builder.Configuration["ConnectionStrings__ToDoDB"];
+    options.UseMySql(x,
+                   ServerVersion.AutoDetect(x)
+        );
+});
+
+
 
 var app = builder.Build();
 app.UseCors("AllowAll");
