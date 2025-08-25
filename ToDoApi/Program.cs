@@ -57,7 +57,7 @@ builder.Services.AddSingleton<JwtService>();
 //         new MySqlServerVersion(new Version(8, 0, 2))
 //     ));
 
-builder.Services.AddDbContext<ToDoDbContext>(options =>
+builder.Services.AddDbContextPool<ToDoDbContext>(options =>
 {
     var x = builder.Configuration.GetSection("ConnectionStrings")["ToDoDB"];
 Console.WriteLine("Connection string: " + x);
