@@ -26,7 +26,7 @@ const Register = () => {
             <br/><br/>
             
             <Button onClick={()=>{ service.addUser(user)}}>Sign Up</Button>
-            { <Alert severity="success">המשתמש נרשם בהצלחה.</Alert>}
+          //  { <Alert severity="success">המשתמש נרשם בהצלחה.</Alert>}
             </div>
         </form>
         
