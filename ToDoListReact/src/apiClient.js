@@ -24,16 +24,5 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-apiClient.interceptors.response.use(
-  function(response){
-    return response;
-  },
-  function(error){
-    if (error.response.status==401)
-      return window.location.href="/login";
-    return Promise.reject.error;
-  }
-
-);
 
 export default apiClient;
