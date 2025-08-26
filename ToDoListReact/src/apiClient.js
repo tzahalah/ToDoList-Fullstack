@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // יצירת אינסטנס מותאם אישית
 const apiClient = axios.create({
-  baseURL: "http://todolist-fullstack-10.onrender.com"
+  baseURL: "https://todolist-fullstack-10.onrender.com"
   
  });
 //baseURL: process.env.REACT_APP_API_URL
