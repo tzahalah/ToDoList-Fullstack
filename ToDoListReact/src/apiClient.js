@@ -2,9 +2,10 @@ import axios from 'axios';
 
 // יצירת אינסטנס מותאם אישית
 const apiClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL
+  baseURL: "http://todolist-fullstack-10.onrender.com"
+  
  });
-
+//baseURL: process.env.REACT_APP_API_URL
 // הוספת Interceptor לתפיסת שגיאות
 apiClient.interceptors.response.use(
   (response) => {
