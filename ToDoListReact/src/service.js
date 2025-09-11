@@ -13,8 +13,8 @@ function setAuthorizationBearer(){
 
 export default {
   getTasks: async () => {
-    const result = await apiClient.get(`/items`)    
-    console.log("Base API URL:", process.env.REACT_APP_API_URL);
+     console.log("Base API URL:", process.env.REACT_APP_API_URL);
+    const result = await apiClient.get(`/items`)       
     return result.data;
   },
 
