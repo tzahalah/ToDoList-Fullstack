@@ -73,27 +73,27 @@ app.UseAuthorization();
 
 
 
-app.MapGet("/items", async (ToDoDbContext dbContext) =>
+app.MapGet("/api/items", async (ToDoDbContext dbContext) =>
 {
     var items = await dbContext.Items.ToListAsync();
     Console.WriteLine(items);
     return Results.Ok(items);
 });
 
-app.MapGet("/items/{id}", async (int id, ToDoDbContext dbContext) =>
+app.MapGet("/api/items/{id}", async (int id, ToDoDbContext dbContext) =>
 {
     var item = await dbContext.Items.FindAsync(id);
     if (item == null)
         return Results.NotFound();
     return Results.Ok(item);
 });
-app.MapPost("/items", async (ToDoDbContext dbContext, Item newItem) =>
+app.MapPost("/api/items", async (ToDoDbContext dbContext, Item newItem) =>
 {
     dbContext.Items.Add(newItem);
     await dbContext.SaveChangesAsync();
     return Results.Created($"/item/{newItem.Id}", newItem);
 });
-app.MapPut("/items/{id}", async (int id, ToDoDbContext dbContext, Item updatedItem) =>
+app.MapPut("/api/items/{id}", async (int id, ToDoDbContext dbContext, Item updatedItem) =>
 {
     var existItem = await dbContext.Items.FindAsync(id);
     if (existItem == null)
@@ -104,7 +104,7 @@ app.MapPut("/items/{id}", async (int id, ToDoDbContext dbContext, Item updatedIt
     return Results.Ok(existItem);
 });
 
-app.MapPut("/items/{id}/isComplete", async (int id, ToDoDbContext dbContext, bool isComplete) =>
+app.MapPut("/api/items/{id}/isComplete", async (int id, ToDoDbContext dbContext, bool isComplete) =>
 {
    var existItem = await dbContext.Items.FindAsync(id);
    if (existItem == null)
@@ -113,7 +113,7 @@ app.MapPut("/items/{id}/isComplete", async (int id, ToDoDbContext dbContext, boo
    await dbContext.SaveChangesAsync();
    return Results.Ok(existItem);
 });
-app.MapDelete("/items/{id}", async (int id, ToDoDbContext dbContext) =>
+app.MapDelete("/api/items/{id}", async (int id, ToDoDbContext dbContext) =>
 {
     var existItem = await dbContext.Items.FindAsync(id);
     if (existItem == null)
@@ -123,18 +123,18 @@ app.MapDelete("/items/{id}", async (int id, ToDoDbContext dbContext) =>
     return Results.NoContent();
 });
 
-app.MapGet("/users", async (ToDoDbContext dbContext) =>
+app.MapGet("/api/users", async (ToDoDbContext dbContext) =>
 {
     var users = await dbContext.Users.ToListAsync();
     return Results.Ok(users);
 }).RequireAuthorization();
 
-app.MapPost("/users", async (User user, ToDoDbContext dbContext) =>
+app.MapPost("/api/users", async (User user, ToDoDbContext dbContext) =>
 {
     await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();
 });
-app.MapPost("users/login", async (User user, ToDoDbContext dbContext, JwtService _jwtService) =>
+app.MapPost("/api/users/login", async (User user, ToDoDbContext dbContext, JwtService _jwtService) =>
 {
     var exitUser = await dbContext.Users.FirstOrDefaultAsync(u => u.Email == user.Email && u.UserName == user.UserName && u.Password == user.Password);
     if (exitUser is not null)
