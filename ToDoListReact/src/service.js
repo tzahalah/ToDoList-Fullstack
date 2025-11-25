@@ -14,33 +14,33 @@ function setAuthorizationBearer(){
 export default {
   getTasks: async () => {
      console.log("Base API URL:", process.env.REACT_APP_API_URL);
-    const result = await apiClient.get(`/items`)       
+    const result = await apiClient.get(`/api/items`)       
     return result.data;
   },
 
   addTask: async(name)=>{
     console.log('addTask', name);
-    const result=await apiClient.post(`/items`,{Name: name, isComplete:false})
+    const result=await apiClient.post(`/api/items`,{Name: name, isComplete:false})
     return result.data;
   },
 
   setCompleted: async(id, isComplete)=>{
     console.log('setCompleted', {id, isComplete})
-    const result= await apiClient.put(`/items/${id}/isComplete?isComplete=${isComplete}`)
+    const result= await apiClient.put(`/api/items/${id}/isComplete?isComplete=${isComplete}`)
     return {};
   },
 
   deleteTask:async(id)=>{
     console.log('deleteTask')
-    const result=await apiClient.delete(`/items/${id}`)
+    const result=await apiClient.delete(`/api/items/${id}`)
   },
 
   addUser: async(user)=>{
-    const result= await apiClient.post(`/users`,user)
+    const result= await apiClient.post(`/api/users`,user)
     return result.data;
   },
   login : async(user)=>{
-    const result= await apiClient.post('/users/login', user)
+    const result= await apiClient.post('/api/users/login', user)
     saveAccessToken(result.data);
   }
 
